@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+    --background: rgb(49, 27, 13);
+	--primary-blue: #625BFE;
+	--secondary-blue: #4bd7e3;
+	--text-color: #fafbfb;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--background);
+    padding: 64px;
+	font-family: Mulish;
+    color: var(--text-color);
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(jaisalmer-back.jpg)
+    
+   
+
+}
+
+.progress__wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+    z-index: 100;
+	width: 100%;
+	height: 10px;
+	background-color: transparent;
+}
+
+.progress__bar {
+	display: block;
+	width: 0;
+	height: inherit;
+	background: linear-gradient(
+        90deg,
+        #2921ae 0%, 
+		#256537 16.15%, 
+		#0c2627 33.85%, 
+		#602e7d 50.52%,
+	    #7d2e35 66.15%, 
+		var(--secondary-blue) 81.25%, 
+		var(--primary-blue) 100%
+	);
+}
+
+.article__content {
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+    gap: 32px;
+    flex-direction: column;
+    background-color: rgb(17, 17, 16);
+    padding: 15px;
+    
+}
+
+.article__content p {
+	line-height: 1.5;
+}
+
+.article__content h1 {
+	font-weight: 700;
+    margin: 0;
+	
+    font-size: 38px;
+}
+ /*YOOY CHECKBOX COMING*/
+ .spot__wrapper {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.spot__title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.spot__list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.spot__checkbox {
+    margin-bottom: 5px;
+}
+
+.spot__button {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+}
+
+a:link{
+    color:white;
+}
+
+ /* Add CSS styles for responsiveness */
+    /* Adjustments for small screens */
+    @media only screen and (max-width: 600px) {
+        /* Place any necessary CSS styles for small screens here */
+      }
+      
+      /* Adjustments for medium screens */
+      @media only screen and (min-width: 601px) and (max-width: 1024px) {
+        /* Place any necessary CSS styles for medium screens here */
+      }
+      
+      /* Adjustments for large screens */
+      @media only screen and (min-width: 1025px) {
+        /* Place any necessary CSS styles for large screens here */
+      }
+
+      /*CHECKBOX*/
+      label{
+        position: relative;
+        width: 40px;
+        height: 20px;
+        
+        cursor: pointer;
+        
+    }
+    label input{
+        position: relative;
+        z-index:1;
+        appearance: none;
+        
+    
+    }
+    label span{
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        background: rgb(70, 65, 58);
+        border-radius: 20px;
+        transition: 0.5s;
+        box-shadow: 0 10px 20px rgb(139, 74, 0);
+    }
+    label input:checked ~ span{
+        background: rgb(46, 155, 46);
+        box-shadow: 0 10px 20px rgb(36, 83, 36);
+    }
+    label span i{
+        position: absolute;
+        top:3px;
+        bottom:4px;
+        width: 15px;
+        height: 15px;
+        background: rgb(212, 201, 201);
+        border-radius: 50%;
+        transition:0.5s;
+        left: 1.5px;
+    }
+    label input:checked ~span i{
+        left: 22px;
+    }
+    
+    /*Let's go*/
+    .Hotels{
+        justify-content: center;
+        display: flex;
+
+    }
+    #letbtn{
+        background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  animation: pulse 1.5s infinite; /* Add animation */
+  /*margin-top: center;
+  */margin-top: 30px; /* Updated margin-top */
+  transition: 0.6s;
+}
+#letbtn::after{
+    left: 100px;
+}
+    
+    /*Footer BUtton*/
+		.footer-button {
+			display: block;
+			width: 100%;
+			text-align: center;
+			margin-top: 40px;
+		  }
+	  
+		  .footer-button a {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #000;
+			color: #fff;
+			text-decoration: none;
+			border-radius: 4px;
+			transition: background-color 0.3s ease;
+		  }
+	  
+		  .footer-button a:hover {
+			background-color: #333;
+		  }

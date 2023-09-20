@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scrolling Progress</title>
+		<link rel="stylesheet" href="varanasi.css" />
+	</head>
+	<body>
+		<div class="progress__wrapper">
+			<span class="progress__bar"></span>
+		</div>
+		<article class="article__content">
+			<h1>
+				Travel Varanasi
+			</h1>
+			<p>Discover the spiritual and cultural heart of India in Varanasi, one of the oldest continuously inhabited cities in the world. Experience the unique blend of ancient traditions and vibrant modern life as you explore the ghats along the sacred Ganges River. Witness the mesmerizing Ganga Aarti ceremony, where priests perform rituals with fire and incense, creating a mystical atmosphere. Take a boat ride on the river to see the ghats come alive with devotees, pilgrims, and colorful ceremonies.</p>
+			<h2>
+				Dashashwamedh Ghat
+			</h2>
+			<img
+				src="images/dashashwamedh-ghat.jpg"
+				alt="Dashashwamedh Ghat"
+				title="Dashashwamedh Ghat"
+			/>
+			<p>Visit Dashashwamedh Ghat, the main ghat in Varanasi, known for its vibrant atmosphere and evening Aarti ceremony. Witness the spectacle of priests offering prayers to the river, accompanied by chanting and music. Take a boat ride along the river to get a closer view of the ceremonies and the beautifully lit ghats.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Dashashwamedh Ghat">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Sarnath
+			</h2>
+			<img
+				src="images/sarnath.jpg"
+				alt="Sarnath"
+				title="Sarnath"
+			/>
+			<p>Explore Sarnath, a significant Buddhist pilgrimage site located near Varanasi. This is where Lord Buddha delivered his first sermon after attaining enlightenment. Visit the Dhamek Stupa, a massive structure that marks the spot where Buddha preached. Explore the ancient ruins, monasteries, and the Sarnath Museum, which houses a vast collection of Buddhist artifacts and sculptures.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Sarnath">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Kashi Vishwanath Temple
+			</h2>
+			<img
+				src="images/kashi-vishwanath-temple.jpg"
+				alt="Kashi Vishwanath Temple"
+				title="Kashi Vishwanath Temple"
+			/>
+			<p>Pay a visit to the revered Kashi Vishwanath Temple, dedicated to Lord Shiva. This historic temple is one of the 12 Jyotirlingas (lingams of light) and holds immense religious significance for Hindus. Marvel at the intricate architecture, golden spire, and the spiritual aura surrounding the temple complex.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Kashi Vishwanath Temple">
+				<span>
+					<i></i>
+				</span>
+			</label>
+		</article>
+		<div class="footer-button">
+			<a href="Asking.html">Move Forward</a>
+		</div>
+		<script>
+			const body = document.body;
+			const progressBar = document.querySelector('.progress__bar');
+			const checkboxes = document.querySelectorAll('.spot__checkbox');
+			const spotsButton = document.querySelector('.spot__button');
+			const selectedSpots = [];
+
+			const updateProgress = () => {
+				let scrollPos = (window.scrollY / (body.scrollHeight - window.innerHeight)) * 100;
+				progressBar.style.width = `${scrollPos}%`;
+				requestAnimationFrame(updateProgress);
+			};
+
+			updateProgress();
+
+			checkboxes.forEach((checkbox) => {
+				checkbox.addEventListener('change', (event) => {
+					const spotName = event.target.value;
+					if (event.target.checked) {
+						selectedSpots.push(spotName);
+					} else {
+						const index = selectedSpots.indexOf(spotName);
+						if (index > -1) {
+							selectedSpots.splice(index, 1);
+						}
+					}
+				});
+			});
+
+			spotsButton.addEventListener('click', () => {
+				const spotsText = selectedSpots.join(', ');
+				alert(spotsText);
+			});
+		</script>
+
+		<div class="Hotels">
+			<input type="button" id="letbtn">
+		</div>
+	</body>
+</html>

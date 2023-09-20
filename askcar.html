@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Find Places to Stay</title>
+		<style>
+			@import url('https://fonts.googleapis.com/css2?family=Papyrus&display=swap');
+
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #000;
+				background-image: radial-gradient(rgba(0, 0, 0, 0.8) 10%, rgba(0, 0, 0, 0.5) 70%);
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+				font-family: Arial, sans-serif;
+				background-image: url("file:///C:/Users/ACER/Desktop/back.jpg");
+			}
+
+			.container {
+				text-align: center;
+			}
+
+			h1 {
+				font-size: 36px;
+				color: white;
+				font-family:sans-serif;
+				margin-bottom: 80px;
+			}
+
+			.button {
+				display: inline-block;
+				background-color: black;
+				color: white;
+				font-size: 24px;
+				font-weight: bold;
+				padding: 20px 40px;
+				border-radius: 10px;
+				margin-right: 20px;
+				cursor: pointer;
+				transition: background-color 0.3s, color 0.3s;
+			}
+
+			.button:hover {
+				background-color: white;
+				color: black;
+			}
+
+			@media only screen and (max-width: 768px) {
+				.button {
+					margin-bottom: 20px;
+				}
+			}
+
+			@media only screen and (min-width: 769px) {
+				.button {
+					margin-right: 40px;
+				}
+			}
+			/*Ye Code Slow Transition karta ha hahah*/
+			body{
+		animation: transitionIn 0.75s
+		}
+		@keyframes transitionIn{
+		from {
+		opacity:0;
+		transform: rotateX-10deg
+		}
+		to {
+		opacity: 1;
+		transform: (0);
+		}
+		}
+		
+		a:link{
+			animation: link 2s infinite;
+		}
+
+	
+@keyframes link {
+  0% {background-color: #1d1e1e;}
+ 	25%{background-color: rgb(209, 201, 201);}
+	 75%{background-color: grey;}
+	 100%{background-color: rgb(40, 39, 39);}
+}
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Need Vehicle To Travel?</h1>
+			<div>
+				<a href="Amour Travels.html" class="button">Skip</a>
+				<a href="carrental.html" class="button">YES</a>
+			</div>
+		</div>
+	</body>
+</html>

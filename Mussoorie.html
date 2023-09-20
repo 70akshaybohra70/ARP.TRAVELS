@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scrolling Progress</title>
+		<link rel="stylesheet" href="style2.css" />
+	</head>
+	<body>
+		<div class="progress__wrapper">
+			<span class="progress__bar"></span>
+		</div>
+		<article class="article__content">
+			<h1>
+				Travel Mussoorie
+			</h1>
+			<p>Embark on a delightful journey to Mussoorie, also known as the "Queen of Hills." Nestled in the Garhwal Himalayas, Mussoorie offers breathtaking views of the snow-capped peaks and lush green valleys. Explore the vibrant Mall Road, dotted with shops, cafes, and colonial-era buildings. Enjoy a cable car ride to Gun Hill for panoramic views of the surrounding mountains. Immerse yourself in the natural beauty of Kempty Falls and take leisurely walks amidst the serene landscapes.</p>
+			<h2>
+				Mall Road
+			</h2>
+			<img
+				src="images/mall-road1.jpg"
+				alt="Mall Road"
+				title="Mall Road"
+			/>
+			<p>Experience the bustling charm of Mall Road, the heart of Mussoorie. Take a leisurely stroll along this vibrant promenade lined with shops, restaurants, and souvenir stalls. Indulge in local delicacies, shop for traditional handicrafts, or simply enjoy the lively atmosphere. From here, you can admire the scenic views of the Doon Valley and the surrounding hills. Don't forget to savor a cup of hot tea while enjoying the cool mountain breeze.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Mall Road">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Gun Hill
+			</h2>
+			<img
+				src="images/gun-hill.jpg"
+				alt="Gun Hill"
+				title="Gun Hill"
+			/>
+			<p>Ride the cable car to Gun Hill, the second-highest peak in Mussoorie, and revel in the panoramic vistas it offers. Enjoy breathtaking views of the Himalayan ranges, including Bandarpoonch, Srikantha, Pithwara, and Gangotri. You can also witness a mesmerizing sunset or sunrise from this vantage point. Take a leisurely walk around Gun Hill and soak in the serene ambiance while capturing memorable photographs.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Gun Hill">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Kempty Falls
+			</h2>
+			<img
+				src="images/kempty-falls.jpg"
+				alt="Kempty Falls"
+				title="Kempty Falls"
+			/>
+			<p>Escape to the enchanting beauty of Kempty Falls, a cascading waterfall surrounded by lush greenery. Take a refreshing dip in the natural pool formed by the waterfall or simply enjoy the cool mist on a warm day. Explore the surrounding trails and picnic spots, and relish the serene ambiance of nature. Kempty Falls is a popular tourist attraction, especially during the summer months when visitors flock to enjoy its refreshing waters.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Kempty Falls">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Lal Tibba
+			</h2>
+			<img
+				src="images/lal-tibba.webp"
+				alt="Lal Tibba"
+				title="Lal Tibba"
+			/>
+			<p>Visit Lal Tibba, the highest point in Mussoorie, and witness breathtaking views of the Himalayan peaks. Enjoy a panoramic vista of the snow-covered mountains, dense forests, and picturesque valleys. Lal Tibba is famous for its telescopes that offer a closer look at the stunning surroundings. It is a popular spot for nature lovers and photographers seeking to capture the beauty of the Garhwal Himalayas.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Lal Tibba">
+				<span>
+					<i></i>
+				</span>
+			</label>
+		</article>
+
+		<div class="footer-button">
+			<a href="Asking.html">Move Forward</a>
+		</div>
+		<script>
+			const body = document.body;
+			const progressBar = document.querySelector('.progress__bar');
+			const checkboxes = document.querySelectorAll('.spot__checkbox');
+			const spotsButton = document.querySelector('.spot__button');
+			const selectedSpots = [];
+	
+			const updateProgress = () => {
+				let scrollPos = (window.scrollY / (body.scrollHeight - window.innerHeight)) * 100;
+				progressBar.style.width = `${scrollPos}%`;
+				requestAnimationFrame(updateProgress);
+			};
+	
+			updateProgress();
+	
+			checkboxes.forEach((checkbox) => {
+				checkbox.addEventListener('change', (event) => {
+					const spotName = event.target.value;
+					if (event.target.checked) {
+						selectedSpots.push(spotName);
+					} else {
+						const index = selectedSpots.indexOf(spotName);
+						if (index > -1) {
+							selectedSpots.splice(index, 1);
+						}
+					}
+				});
+			});
+	
+			spotsButton.addEventListener('click', () => {
+				const spotsText = selectedSpots.join(', ');
+				alert(spotsText);
+			});
+		</script>
+	</body>
+</html>

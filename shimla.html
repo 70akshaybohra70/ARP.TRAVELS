@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scrolling Progress</title>
+		<link rel="stylesheet" href="style2.css" />
+	</head>
+	<body>
+		<div class="progress__wrapper">
+			<span class="progress__bar"></span>
+		</div>
+		<article class="article__content">
+			<h1>
+				Travel Shimla
+			</h1>
+			<p>Explore the captivating hill town of Shimla, nestled in the Himalayas of Himachal Pradesh. Shimla, also known as the "Queen of Hills," is famous for its pleasant climate, colonial architecture, and panoramic views of the surrounding mountains. Take a stroll along the famous Mall Road, visit the iconic Christ Church, and experience the charm of the Ridge. Shimla offers a perfect blend of natural beauty and colonial heritage.</p>
+			<h2>
+				Mall Road
+			</h2>
+			<img
+				src="images/mall-road.jpg"
+				alt="Mall Road"
+				title="Mall Road"
+			/>
+			<p>Indulge in a leisurely walk along Mall Road, the bustling heart of Shimla. This iconic street is lined with shops, restaurants, and colonial-era buildings. Enjoy shopping for local handicrafts, souvenirs, and woollen garments. Savour delicious street food, take a horse ride, or simply soak in the vibrant atmosphere of this popular hangout spot. Mall Road offers stunning views of the surrounding hills and is a must-visit attraction in Shimla.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Mall Road">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Christ Church
+			</h2>
+			<img
+				src="images/christ-church.jpg"
+				alt="Christ Church"
+				title="Christ Church"
+			/>
+			<p>Admire the architectural beauty of Christ Church, one of the oldest churches in North India. Built in the neo-Gothic style, this iconic landmark features stained glass windows, a majestic clock tower, and a serene interior. Step inside to experience the tranquil ambiance and seek solace in this religious haven. The church is especially enchanting in the evenings when it is beautifully illuminated.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Christ Church">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				The Ridge
+			</h2>
+			<img
+				src="images/the-ridge.jpg"
+				alt="The Ridge"
+				title="The Ridge"
+			/>
+			<p>Visit The Ridge, a spacious open area in the heart of Shimla, offering breathtaking views of the surrounding snow-capped mountains. Take a leisurely walk and enjoy the panoramic vistas of the Himalayas. The Ridge is home to numerous cultural events and fairs throughout the year, making it a vibrant hub of entertainment and celebration. Don't miss the stunning views of sunrise and sunset from this picturesque location.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="The Ridge">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Kufri
+			</h2>
+			<img
+				src="images/kufri.jpg"
+				alt="Kufri"
+				title="Kufri"
+			/>
+			<p>Escape to the scenic hill station of Kufri, located just a short drive from Shimla. Surrounded by lush green forests and snow-clad peaks, Kufri offers a tranquil retreat for nature lovers. Experience the thrill of horse riding, visit the Himalayan Nature Park to see various Himalayan species, and enjoy panoramic views from the Mahasu Peak. Kufri is also a popular destination for skiing during the winter months.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Kufri">
+				<span>
+					<i></i>
+				</span>
+			</label>
+		</article>
+
+		<div class="footer-button">
+			<a href="Asking.html">Move Forward</a>
+		</div>
+		<script>
+			const body = document.body;
+			const progressBar = document.querySelector('.progress__bar');
+			const checkboxes = document.querySelectorAll('.spot__checkbox');
+			const spotsButton = document.querySelector('.spot__button');
+			const selectedSpots = [];
+	
+			const updateProgress = () => {
+				let scrollPos = (window.scrollY / (body.scrollHeight - window.innerHeight)) * 100;
+				progressBar.style.width = `${scrollPos}%`;
+				requestAnimationFrame(updateProgress);
+			};
+	
+			updateProgress();
+	
+			checkboxes.forEach((checkbox) => {
+				checkbox.addEventListener('change', (event) => {
+					const spotName = event.target.value;
+					if (event.target.checked) {
+						selectedSpots.push(spotName);
+					} else {
+						const index = selectedSpots.indexOf(spotName);
+						if (index > -1) {
+							selectedSpots.splice(index, 1);
+						}
+					}
+				});
+			});
+	
+			spotsButton.addEventListener('click', () => {
+				const spotsText = selectedSpots.join(', ');
+				alert(spotsText);
+			});
+		</script>
+	</body>
+</html>

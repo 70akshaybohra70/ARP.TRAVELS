@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Scrolling Progress</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<div class="progress__wrapper">
+		<span class="progress__bar"></span>
+	</div>
+	<article class="article__content">
+		<h1>
+			Travel Agra
+		</h1>
+		<p>Experience the grandeur of Agra, home to the iconic Taj Mahal, one of the Seven Wonders of the World. Marvel at the exquisite architecture and intricate marble work of this UNESCO World Heritage Site. Explore the Agra Fort, a red sandstone fortress that offers a glimpse into the Mughal era. Immerse yourself in the rich history and cultural heritage of Agra as you visit the tomb of Itimad-ud-Daulah and the vibrant markets.</p>
+		<h2>
+			Taj Mahal
+		</h2>
+		<img
+			src="images/taj-mahal.webp"
+			alt="Taj Mahal"
+			title="Taj Mahal"
+		/>
+		<p>Admire the timeless beauty of the Taj Mahal, a masterpiece of Mughal architecture. Witness the changing hues of the white marble mausoleum as the sun rises or sets, creating a magical ambiance. Explore the intricate carvings, the beautiful gardens, and the reflection pools that add to the charm of this iconic monument.</p>
+		<label><input type="checkbox" id="placeCheckbox1" value="TAJ MAHAL">
+			<span>
+				<i></i>
+			</span>
+		</label>
+		<h2>
+			Agra Fort
+		</h2>
+		<img
+			src="images/agra-fort.jpg"
+			alt="Agra Fort"
+			title="Agra Fort"
+		/>
+		<p>Step into history at the Agra Fort, a UNESCO World Heritage Site. Discover the impressive red sandstone walls and intricate palaces within the fort complex. Explore the Diwan-i-Aam (Hall of Public Audience), Diwan-i-Khas (Hall of Private Audience), and the beautiful courtyards that offer a glimpse into the opulence of the Mughal era.</p>
+		<label><input type="checkbox" id="placeCheckbox2" value="AGRA-FORT">
+			<span>
+				<i></i>
+			</span>
+		</label>
+		<h2>
+			Itimad-ud-Daulah
+		</h2>
+		<img
+			src="images/itimad-ud-daulah.png"
+			alt="Itimad-ud-Daulah"
+			title="Itimad-ud-Daulah"
+		/>
+		<p>Visit Itimad-ud-Daulah, also known as the Baby Taj, a mausoleum located on the eastern bank of the Yamuna River. Built between 1622 and 1628, Itimad-ud-Daulah is often regarded as a draft of the Taj Mahal, as it showcases intricate marble inlay work and delicate carvings. Explore the beautiful gardens and admire the stunning architecture of this tomb, which serves as a memorial for Mirza Ghiyas Beg, the grandfather of Mumtaz Mahal.</p>
+		<label><input type="checkbox" id="placeCheckbox3" value="Itimad-ud-Daulah">
+			<span>
+				<i></i>
+			</span>
+		</label>
+	</article>
+
+	<script>
+		const body = document.body;
+		const progressBar = document.querySelector('.progress__bar');
+
+		const updateProgress = () => {
+			let scrollPos = (window.scrollY / (body.scrollHeight - window.innerHeight)) * 100;
+			progressBar.style.width = `${scrollPos}%`;
+			requestAnimationFrame(updateProgress);
+		};
+
+		updateProgress();
+
+		document.addEventListener('DOMContentLoaded', function() {
+			const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+			checkboxes.forEach(function(checkbox) {
+				checkbox.addEventListener('change', function() {
+					if (this.checked) {
+						const selectedPlace = this.value;
+						const xhr = new XMLHttpRequest();
+						xhr.open('POST', 'process_booking.php', true);
+						xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+						xhr.onreadystatechange = function() {
+							if (xhr.readyState === 4 && xhr.status === 200) {
+								const response = xhr.responseText;
+								alert(response);
+							}
+						};
+						xhr.send(`place=${encodeURIComponent(selectedPlace)}`);
+					}
+				});
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scrolling Progress</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="progress__wrapper">
+			<span class="progress__bar"></span>
+		</div>
+		<article class="article__content">
+			<h1>
+				Travel Jaisalmer
+			</h1>
+			<p>Embark on a journey through history as you explore the magnificent Jaisalmer Fort, a UNESCO World Heritage Site. Marvel at the impressive architecture of this living fort, with its golden sandstone walls glowing in the sunlight. Discover the intricate carvings, ornate balconies, and narrow alleys as you wander through the fort's maze-like structure. From the top, enjoy panoramic views of the city and the surrounding Thar Desert.</p>
+				
+			<h2>
+				Jaisalmer Fort
+			</h2>
+			<img
+				src="images/jaisalmer-fort.jpg"
+				alt="Jaisalmer Fort"
+				title="Jaisalmer Fort"
+			/>
+			<p>Nullam at arcu a est sollicitudin euismod. Nam quis nulla. In enim a arcu imperdiet malesuada. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In laoreet, magna id viverra tincidunt, sem odio bibendum justo, vel imperdiet sapien wisi sed libero. Morbi imperdiet, mauris ac auctor dictum, nisl ligula egestas nulla, et sollicitudin sem purus in lacus.</p>
+			<label><input type="checkbox" class="h2-checkbox">
+				<span>
+					<i></i>
+				</span>
+			</label>
+				
+			<h2>
+				Patwon Ki Haveli
+			</h2>
+			<img
+				src="images/Patwon-Ki-Haveli.jpg"
+				alt="Patwon Ki Haveli"
+				title="Patwon Ki Haveli"
+			/>
+			<p>Step into the opulent world of Patwon Ki Haveli, a collection of five grand mansions showcasing exquisite Rajasthani architecture. Admire the intricate wall paintings, mirror work, and ornate jharokhas (balconies). Each haveli has its own unique charm and tells a story of the wealthy merchants who once inhabited them. Explore the various rooms, courtyards, and galleries to get a glimpse of the rich cultural heritage of Jaisalmer.</p>
+			<label><input type="checkbox" class="h2-checkbox">
+				<span>
+					<i></i>
+				</span>
+			</label>
+				
+			<h2>
+				Sam Sand Dunes
+			</h2>
+			<img
+				src="images/sam-sand-dunes.jpg"
+				alt="Sam Sand Dunes"
+				title="Sam Sand Dunes"
+			/>
+			<p>Venture into the mystical Thar Desert and experience the mesmerizing Sam Sand Dunes. Ride a camel across the vast expanse of golden sand dunes and witness the breathtaking sunset over the desert landscape. Immerse yourself in the local culture with traditional folk music and dance performances by the local tribes. For an adrenaline rush, try your hand at dune bashing or take a thrilling jeep safari through the undulating dunes.</p>
+			<label><input type="checkbox" class="h2-checkbox">
+				<span>
+					<i></i>
+				</span>
+			</label>
+				
+			<h2>
+				Gadisar Lake
+			</h2>
+			<img
+				src="images/gadisar-lake.jpg"
+				alt="Gadisar Lake"
+				title="Gadisar Lake"
+			/>
+			<p>Immerse yourself in tranquility at Gadisar Lake, a man-made oasis in the heart of Jaisalmer. Stroll along the serene banks of the lake, adorned with intricately carved temples and shrines. Take a boat ride to experience the calmness of the water and witness the vibrant birdlife. As the sun sets, the lake transforms into a picturesque spectacle, with the surrounding architecture casting beautiful reflections on the water's surface.</p>
+			<label><input type="checkbox" class="h2-checkbox">
+				<span>
+					<i></i>
+				</span>
+			</label>	
+		</article>
+        
+		<div class="footer-button">
+			<a href="Asking.html">Move Forward</a>
+		</div>
+	
+		<script>
+			const body = document.body;
+			const progressBar = document.querySelector('.progress__bar');
+	
+			const updateProgress = () => {
+				let scrollPos = (window.scrollY / (body.scrollHeight - window.innerHeight)) * 100;
+				progressBar.style.width = `${scrollPos}%`;
+				requestAnimationFrame(updateProgress);
+			};
+	
+			updateProgress();
+	
+			const h2Checkboxes = document.querySelectorAll('.h2-checkbox');
+			const selectedH2Values = [];
+	
+			h2Checkboxes.forEach((checkbox) => {
+				checkbox.addEventListener('change', (event) => {
+					const h2Element = event.target.nextElementSibling;
+					const h2Value = h2Element.innerText.trim();
+					if (event.target.checked) {
+						selectedH2Values.push(h2Value);
+					} else {
+						const index = selectedH2Values.indexOf(h2Value);
+						if (index > -1) {
+							selectedH2Values.splice(index, 1);
+						}
+					}
+					console.log(selectedH2Values);
+					// You can store the selectedH2Values in a variable or perform any further operations with it
+				});
+			});
+		</script>
+	</body>
+</html>
