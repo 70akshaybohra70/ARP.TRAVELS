@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scrolling Progress</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="progress__wrapper">
+			<span class="progress__bar"></span>
+		</div>
+		<article class="article__content">
+			<h1>
+				Travel Goa
+			</h1>
+			<p>Experience the vibrant beaches and lively culture of Goa, a tropical paradise on the western coast of India. Goa is famous for its stunning coastline, Portuguese architecture, and bustling nightlife. Relax on the sun-kissed beaches, indulge in water sports, explore the charming villages, and savor the delicious seafood. Goa offers a unique blend of relaxation, adventure, and rich cultural heritage.</p>
+				
+			<h2>
+				Baga Beach
+			</h2>
+			<img
+				src="images/baga-beach.jpg"
+				alt="Baga Beach"
+				title="Baga Beach"
+			/>
+			<p>Visit Baga Beach, one of the most popular beaches in Goa, known for its golden sands, clear blue waters, and bustling shacks. Relax on the beach, soak up the sun, and take a refreshing dip in the Arabian Sea. Baga Beach is also famous for its vibrant nightlife, with numerous clubs and beachside bars offering live music and entertainment.</p>
+			<label><input type="checkbox" id="placeCheckbox1" value="BAGA BEACH">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Old Goa
+			</h2>
+			<img
+				src="images/old-goa.cms"
+				alt="Old Goa"
+				title="Old Goa"
+			/>
+			<p>Step back in time and explore the historical treasures of Old Goa, a UNESCO World Heritage Site. Discover the colonial-era churches, including the Basilica of Bom Jesus, which houses the mortal remains of St. Francis Xavier. Marvel at the intricate architecture and rich religious artistry displayed in the churches and convents of Old Goa.</p>
+			<label><input type="checkbox" id="placeCheckbox2" value="OLD GOA">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Anjuna Flea Market
+			</h2>
+			<img
+				src="images/anjuna-flea-market.jpg"
+				alt="Anjuna Flea Market"
+				title="Anjuna Flea Market"
+			/>
+			<p>Experience the vibrant atmosphere of the Anjuna Flea Market, a popular shopping destination in Goa. Browse through a wide range of products, including clothing, accessories, handicrafts, and souvenirs. Immerse yourself in the lively ambiance, enjoy live music performances, and relish the delicious street food.</p>
+			<label><input type="checkbox" id="placeCheckbox3" value="ANJUNA FLEA MARKET">
+				<span>
+					<i></i>
+				</span>
+			</label>
+		</article>
+
+		<div class="footer-button">
+			<a href="Asking.html">Move Forward</a>
+		</div>
+
+		<script>
+			const body = document.body;
+			const progressBar = document.querySelector('.progress__bar');
+
+			const updateProgress = () => {
+				let scrollPos = (window.scrollY / (body.scrollHeight - window.innerHeight)) * 100;
+				progressBar.style.width = `${scrollPos}%`;
+				requestAnimationFrame(updateProgress);
+			};
+
+			updateProgress();
+
+			document.addEventListener('DOMContentLoaded', function() {
+				const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+				checkboxes.forEach(function(checkbox) {
+					checkbox.addEventListener('change', function() {
+						if (this.checked) {
+							const selectedPlace = this.value;
+							const xhr = new XMLHttpRequest();
+							xhr.open('POST', 'process_booking.php', true);
+							xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+							xhr.onreadystatechange = function() {
+								if (xhr.readyState === 4 && xhr.status === 200) {
+									const response = xhr.responseText;
+									alert(response);
+								}
+							};
+							xhr.send(`place=${encodeURIComponent(selectedPlace)}`);
+						}
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

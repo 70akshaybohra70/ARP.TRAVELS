@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Form</title>
+  <style>
+    /* CSS styles here */
+    body{
+
+      background-image: url("file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/images/bgbook.jpg");
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      margin-top:40px ;
+      padding: 25px;
+      background-image: url("file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/images/backimg1.jpg");
+      transition-property: none;
+
+    
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-button {
+      background-color: #000;
+      color: #fff;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background-color: #333;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Booking Form</h1>
+    <form action="process_form.php" method="POST">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your Full Name"required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email"required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone Number" required>
+      </div>
+
+      <div class="form-group">
+        <label for="destination">Destination Spot:</label>
+        <input type="text" id="destination" name="destination"placeholder="Enter your Destination"required>
+      </div>
+
+      <div class="form-group">
+        <label for="vehicle">Selected Vehicle:</label>
+        <select id="vehicle" name="vehicle" required>
+          <option value="Car">Car</option>
+          <option value="Bike">Bike</option>
+          <option value="Scooter">Scooter</option>
+          <option value="Cycle">Cycle</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+      </div>
+
+      <button type="submit" class="submit-button">Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scrolling Progress</title>
+		<link rel="stylesheet" href="style2.css" />
+	</head>
+	<body>
+		<div class="progress__wrapper">
+			<span class="progress__bar"></span>
+		</div>
+		<article class="article__content">
+			<h1>
+				Travel Manali
+			</h1>
+			<p>Explore the scenic beauty and adventure of Manali, nestled in the breathtaking Himalayas. Manali is known for its picturesque landscapes, snow-capped mountains, and thrilling outdoor activities. Engage in activities like trekking, paragliding, river rafting, and skiing. Discover the enchanting valleys, serene monasteries, and rejuvenating hot springs, making Manali a perfect destination for nature lovers and adventure enthusiasts.</p>
+			<h2>
+				Rohtang Pass
+			</h2>
+			<img
+				src="images/rohtang-pass.jpg"
+				alt="Rohtang Pass"
+				title="Rohtang Pass"
+			/>
+			<p>Embark on a breathtaking journey to Rohtang Pass, located at an altitude of 3,978 meters. Marvel at the panoramic views of the surrounding Himalayan peaks, glaciers, and pristine landscapes. Enjoy playing in the snow, indulge in snowboarding or skiing, and capture memories against the backdrop of this stunning mountain pass.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Rohtang Pass">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Hadimba Temple
+			</h2>
+			<img
+				src="images/hadimba-temple.webp"
+				alt="Hadimba Temple"
+				title="Hadimba Temple"
+			/>
+			<p>Visit the famous Hadimba Temple, dedicated to Goddess Hadimba Devi. Surrounded by lush deodar forests, the temple showcases intricate wood carvings and a pagoda-style architecture. Seek blessings at this ancient temple and enjoy the tranquil atmosphere of the surrounding cedar forests.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Hadimba Temple">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Solang Valley
+			</h2>
+			<img
+				src="images/solang-valley.webp"
+				alt="Solang Valley"
+				title="Solang Valley"
+			/>
+			<p>Experience the thrill of adventure at Solang Valley, a paradise for adventure seekers. Engage in activities like paragliding, zorbing, skiing, and snowboarding, depending on the season. The scenic beauty of Solang Valley combined with the adrenaline rush of adventure sports makes it a must-visit destination in Manali.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Solang Valley">
+				<span>
+					<i></i>
+				</span>
+			</label>
+		</article>
+
+		<div class="footer-button">
+			<a href="Asking.html">Move Forward</a>
+		</div>
+		  
+		<script>
+			const body = document.body;
+			const progressBar = document.querySelector('.progress__bar');
+			const checkboxes = document.querySelectorAll('.spot__checkbox');
+			const spotsButton = document.querySelector('.spot__button');
+			const selectedSpots = [];
+	
+			const updateProgress = () => {
+				let scrollPos = (window.scrollY / (body.scrollHeight - window.innerHeight)) * 100;
+				progressBar.style.width = `${scrollPos}%`;
+				requestAnimationFrame(updateProgress);
+			};
+	
+			updateProgress();
+	
+			checkboxes.forEach((checkbox) => {
+				checkbox.addEventListener('change', (event) => {
+					const spotName = event.target.value;
+					if (event.target.checked) {
+						selectedSpots.push(spotName);
+					} else {
+						const index = selectedSpots.indexOf(spotName);
+						if (index > -1) {
+							selectedSpots.splice(index, 1);
+						}
+					}
+				});
+			});
+	
+			spotsButton.addEventListener('click', () => {
+				const spotsText = selectedSpots.join(', ');
+				alert(spotsText);
+			});
+		</script>
+	</body>
+</html>

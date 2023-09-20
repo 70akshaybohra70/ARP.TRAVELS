@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Car Rental</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url("file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/images/bgcar.jpeg");
+      
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+
+    }
+
+    h1 {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      
+      text-align: center;
+      margin-bottom:90px;
+      color: cadetblue;
+      
+    }
+    h1:hover{
+      color: black;
+      animation: mymove 5s infinite;
+       
+    }
+    @keyframes mymove {
+  0% {color: #335172;}
+ 25% {color: #21a041;}
+ 50% {color: #28c0ac;}
+ 75%{color: #6e9e16}
+ 100%{color: #33679e}
+}
+
+
+    .vehicle-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    .vehicle-card {
+      width: 300px;
+      height: 200px;
+      margin-bottom: 80px;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+
+    .vehicle-image {
+      width: 100%;
+      height: 120px;
+      
+      object-fit: cover;
+      border-radius: 8px;
+      color: red;
+    }
+
+    .vehicle-details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .vehicle-name {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .vehicle-price {
+      color: #888;
+      font-size: 14px;
+    }
+
+    .take-it-button {
+      padding: 8px 16px;
+      margin-bottom:60px;
+      background-color: #000;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 4px;
+      transition: 0.3s;
+      text-align: center;
+    }
+
+    .vehicle-card:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .vehicle-card:hover .take-it-button {
+      background-color: #fff;
+      color: #000;
+    }
+    
+  
+    /*Ye Code Slow Transition karta ha hahah*/
+	  body{
+		animation: transitionIn 0.75s
+		}
+		@keyframes transitionIn{
+		from {
+		opacity:0;
+		transform: rotateX-10deg
+		}
+		to {
+		opacity: 1;
+		transform: (0);
+		}
+    }
+
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .modal {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .modal-buttons button {
+      margin: 0 10px;
+      padding: 8px 16px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .modal-buttons button:hover {
+      background-color: #333;
+    }
+
+    .overlay.show {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+
+ .navbar {
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   background-color: lightblue;
+}
+
+.navbar-brand {
+  color: #333333;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+
+
+}
+
+.navbar ul li {
+  margin-right: 20px;
+
+
+}
+
+.navbar ul li a {
+  color: #333333;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  transition: 0.3s;
+
+}
+
+.navbar ul li a:hover {
+  background-color: #e9e9e9;
+  border-radius: 5px;
+}
+
+.navbar ul li:last-child {
+  margin-right: 0;
+  margin-left: auto;
+
+}
+
+.navbar ul li:last-child a {
+  color: #ff4d00;
+  font-weight: bold;
+
+}
+
+.collapse.navbar-collapse {
+  justify-content: flex-end;
+
+
+}
+
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar ul li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .navbar ul li:last-child {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+    
+
+  </style>
+
+
+
+
+</head>
+
+<body>
+  <!--nav bar-->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">ARP Travel</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#section1" onclick="scrollToDiv('section1')">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/New%20folder/aboutindex.html" onclick="scrollToDiv('footer')">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section2" onclick="scrollToDiv('section2')">Destinations</a></li>
+          <li class="nav-item"><a class="nav-link" href="#section3" onclick="scrollToDiv('section3')">Note</a></li>
+          <!--<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          -->
+          <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    <div class="container">
+    <h1>Tour Vehicles for Rent</h1>
+
+    <div class="vehicle-list">
+      <!-- Car Cards -->
+      <div class="vehicle-card">
+        <img class="vehicle-image" src="images/car1.png" alt="Car 1">
+        <div class="vehicle-details">
+          <h2 class="vehicle-name" id="car">Car 1</h2>
+          <p class="vehicle-price">Price: $50/km</p>
+          <a href="file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/Finalpage.html" class="take-it-button" onclick="confirmBooking()">Take It</a>
+        </div>
+      </div>
+
+      <div class="vehicle-card">
+        <img class="vehicle-image" src="images/car2.png" alt="Car 2">
+        <div class="vehicle-details">
+          <h2 class="vehicle-name" id="car">Car 2</h2>
+          <p class="vehicle-price">Price: $60/km</p>
+          <a href="file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/Finalpage.html" class="take-it-button" onclick="confirmBooking()">Take It</a>
+        </div>
+      </div>
+
+      <!-- Add more car cards here -->
+
+      <!-- Bike Cards -->
+      <div class="vehicle-card">
+        <img class="vehicle-image" src="images/bike1.png" alt="Bike 1">
+        <div class="vehicle-details">
+          <h2 class="vehicle-name">Bike 1</h2>
+          <p class="vehicle-price">Price: $20/km</p>
+          <a href="file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/Finalpage.html" class="take-it-button" onclick="confirmBooking()">Take It</a>
+        </div>
+      </div>
+
+      <div class="vehicle-card">
+        <img class="vehicle-image" src="images/bike2 (2).png" alt="Bike 2">
+        <div class="vehicle-details">
+          <h2 class="vehicle-name">Bike 2</h2>
+          <p class="vehicle-price">Price: $25/km</p>
+          <a href="file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/Finalpage.html" class="take-it-button" onclick="confirmBooking()">Take It</a>
+        </div>
+      </div>
+
+      <!-- Add more bike cards here -->
+
+      <!-- Scooter Cards -->
+      <div class="vehicle-card">
+        <img class="vehicle-image" src="images/scooter2-removebg-preview.png" alt="Scooter 1">
+        <div class="vehicle-details">
+          <h2 class="vehicle-name">Scooter 1</h2>
+          <p class="vehicle-price">Price: $15/km</p>
+          <a href="file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/Finalpage.html" class="take-it-button" onclick="confirmBooking()">Take It</a>
+        </div>
+      </div>
+
+      <div class="vehicle-card">
+        <img class="vehicle-image" src="images/scooter1-removebg-preview.png" alt="Scooter 2">
+        <div class="vehicle-details">
+          <h2 class="vehicle-name">Scooter 2</h2>
+          <p class="vehicle-price">Price: $18/km</p>
+          <a href="file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/Finalpage.html" class="take-it-button" onclick="confirmBooking()">Take It</a>
+        </div>
+      </div>
+
+      <!-- Add more scooter cards here -->
+
+      <!-- Cycle Cards -->
+      <div class="vehicle-card">
+        <img class="vehicle-image" src="images/3-removebg-preview.png" alt="Cycle 1">
+        <div class="vehicle-details">
+          <h2 class="vehicle-name">Cycle 1</h2>
+          <p class="vehicle-price">Price: $10/km</p>
+          <a href="file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/Finalpage.html" class="take-it-button" onclick="confirmBooking()">Take It</a>
+        </div>
+      </div>
+
+      <div class="vehicle-card">
+        <img class="vehicle-image" src="images/2-removebg-preview.png" alt="Cycle 2">
+        <div class="vehicle-details">
+          <h2 class="vehicle-name">Cycle 2</h2>
+          <p class="vehicle-price">Price: $12/km</p>
+          <a href="file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/Finalpage.html" class="take-it-button" onclick="confirmBooking()">Take It</a>
+        </div>
+      </div>
+      
+
+      <!-- Add more cycle cards here -->
+    </div>
+  </div>
+
+  <div class="overlay" id="confirmationOverlay">
+    <div class="modal">
+      <h2>Confirmation</h2>
+      <p>Are you sure you want to proceed with the booking?</p>
+      <div class="modal-buttons">
+        <button onclick="proceedBooking()">Yes</button>
+        <button onclick="cancelBooking()">No</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    
+  function confirmBooking(vehicleName, price) {
+    var overlay = document.getElementById("confirmationOverlay");
+    overlay.classList.add("show");
+
+    // Store the selected vehicle details in session storage
+    sessionStorage.setItem("vehicleName", vehicleName);
+    sessionStorage.setItem("price", price);
+  }
+
+  function proceedBooking() {
+    // Retrieve the stored vehicle details from session storage
+    var vehicleName = sessionStorage.getItem("vehicleName");
+    var price = sessionStorage.getItem("price");
+
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Prepare the request
+    xhr.open("POST", "process_booking.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // Set up the callback function for when the request completes
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Handle the response from the PHP file
+        var response = xhr.responseText;
+        alert(response); // Show a success message or handle the response as needed
+
+        // Clear the stored vehicle details from session storage
+        sessionStorage.removeItem("vehicleName");
+        sessionStorage.removeItem("price");
+
+        // Redirect to the booking page
+        window.location.href = "booking.html";
+      }
+    };
+
+    // Send the request with the selected vehicle details
+    xhr.send("vehicleName=" + encodeURIComponent(vehicleName) + "&price=" + encodeURIComponent(price));
+  }
+
+  function cancelBooking() {
+    var overlay = document.getElementById("confirmationOverlay");
+    overlay.classList.remove("show");
+
+    // Clear the stored vehicle details from session storage
+    sessionStorage.removeItem("vehicleName");
+    sessionStorage.removeItem("price");
+  }
+</script>
+
+
+    
+  </script>
+
+</body>
+
+
+
+</html>

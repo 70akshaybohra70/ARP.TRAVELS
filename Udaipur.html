@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scrolling Progress</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="progress__wrapper">
+			<span class="progress__bar"></span>
+		</div>
+		<article class="article__content">
+			<h1>
+				Travel Udaipur
+			</h1>
+			<p>Embark on a journey through history as you explore the enchanting city of Udaipur, known for its magnificent palaces, shimmering lakes, and rich cultural heritage. Experience the regal charm of the City Palace, stroll through the beautiful gardens of Saheliyon ki Bari, and admire the intricate architecture of Jag Mandir. Udaipur is also famous for its boat rides on Lake Pichola, where you can enjoy panoramic views of the surrounding hills and palaces.</p>
+			<h2>
+				City Palace
+			</h2>
+			<img
+				src="images/city-palace.jpg"
+				alt="City Palace"
+				title="City Palace"
+			/>
+			<p>Discover the grandeur of the City Palace, a sprawling complex of palaces, courtyards, and gardens overlooking Lake Pichola. Marvel at the fusion of Rajasthani and Mughal architectural styles and explore the various museums and galleries housed within the palace. From the palace balconies, witness breathtaking views of the lake and the surrounding Aravalli Mountains. Don't miss the stunning Crystal Gallery, which showcases a remarkable collection of crystal artifacts.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="City Palace">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Saheliyon ki Bari
+			</h2>
+			<img
+				src="images/saheliyon-ki-bari.jpg"
+				alt="Saheliyon ki Bari"
+				title="Saheliyon ki Bari"
+			/>
+			<p>Escape to the serene beauty of Saheliyon ki Bari, a delightful garden adorned with fountains, kiosks, marble elephants, and lush greenery. Built for the royal ladies of Udaipur, this garden is a perfect retreat from the bustling city. Admire the finely sculpted statues and enjoy a leisurely stroll along the tranquil pathways. The garden also features a beautiful lotus pool and a museum showcasing the rich history of Udaipur.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Saheliyon ki Bari">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Jag Mandir
+			</h2>
+			<img
+				src="images/jag-mandir.jpg"
+				alt="Jag Mandir"
+				title="Jag Mandir"
+			/>
+			<p>Experience the allure of Jag Mandir, a stunning island palace located in the middle of Lake Pichola. Take a boat ride to the palace and explore its ornate architecture, expansive courtyards, and beautiful gardens. Enjoy a leisurely walk along the marble corridors and soak in the panoramic views of the lake. Jag Mandir is also a popular venue for weddings and cultural events, adding to its charm and mystique.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Jag Mandir">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Lake Pichola
+			</h2>
+			<img
+				src="images/lake-pichola.jpg"
+				alt="Lake Pichola"
+				title="Lake Pichola"
+			/>
+			<p>Indulge in the serene beauty of Lake Pichola, one of the most picturesque lakes in Udaipur. Take a boat ride on the tranquil waters and witness the mesmerizing reflections of the surrounding palaces and havelis. Visit the iconic Lake Palace, an architectural marvel that appears to float on the lake's surface. As the sun sets, the lake transforms into a magical setting, with the shimmering water and illuminated palaces creating a romantic ambiance.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Lake Pichola">
+				<span>
+					<i></i>
+				</span>
+			</label>
+		</article>
+
+		<div class="footer-button">
+			<a href="Asking.html">Move Forward</a>
+		</div>
+		<script>
+			const body = document.body;
+			const progressBar = document.querySelector('.progress__bar');
+			const checkboxes = document.querySelectorAll('.spot__checkbox');
+			const spotsButton = document.querySelector('.spot__button');
+			const selectedSpots = [];
+	
+			const updateProgress = () => {
+				let scrollPos = (window.scrollY / (body.scrollHeight - window.innerHeight)) * 100;
+				progressBar.style.width = `${scrollPos}%`;
+				requestAnimationFrame(updateProgress);
+			};
+	
+			updateProgress();
+	
+			checkboxes.forEach((checkbox) => {
+				checkbox.addEventListener('change', (event) => {
+					const spotName = event.target.value;
+					if (event.target.checked) {
+						selectedSpots.push(spotName);
+					} else {
+						const index = selectedSpots.indexOf(spotName);
+						if (index > -1) {
+							selectedSpots.splice(index, 1);
+						}
+					}
+				});
+			});
+	
+			spotsButton.addEventListener('click', () => {
+				const spotsText = selectedSpots.join(', ');
+				alert(spotsText);
+			});
+		</script>
+
+	</body>
+</html>

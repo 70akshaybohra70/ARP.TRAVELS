@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #F5F1F1;
+            font-family: Arial, sans-serif;
+            background-image: url("file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/images/back2.jpg"); 
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        h1 {
+            color: lightblue;
+        }
+        h1:hover{
+      color: black;
+      animation: mymove 5s infinite;
+       
+    }
+    @keyframes mymove {
+        0% {color: #335172;}
+        25% {color: #21a041;}
+        50% {color: #28c0ac;}
+        75%{color: #6e9e16}
+        100%{color: #33679e}
+}
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+        }
+        .hotel {
+            position: relative;
+            margin-bottom: 30px;
+            width: 48%;
+            padding: 10px;
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            background-image: url("file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/images/back2.jpg"); 
+        }
+        .hotel:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .img {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            border-radius: 5px;
+            overflow: hidden;
+
+        }
+        .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+        .img:hover img {
+            opacity: 0.8;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .hotel:hover .overlay {
+            opacity: 1;
+        }
+        .description {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #FFF;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .hotel:hover .description {
+            opacity: 1;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #FFFFFF;
+            background-color: #FF6B6B;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #E64E4E;
+        }
+        @media screen and (min-width: 768px) {
+            .hotel {
+                width: 48%;
+            }
+        }
+
+        .navbar {
+  background-color:lightgray ;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  color: #333333;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navbar ul li {
+  margin-right: 20px;
+}
+
+.navbar ul li a {
+  color: #333333;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  transition: 0.3s;
+}
+
+.navbar ul li a:hover {
+  background-color: #e9e9e9;
+  border-radius: 5px;
+}
+
+.navbar ul li:last-child {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.navbar ul li:last-child a {
+  color: #ff4d00;
+  font-weight: bold;
+}
+
+.collapse.navbar-collapse {
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar ul li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .navbar ul li:last-child {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+
+
+    </style>
+    <script>
+        function bookHotel(hotelName) {
+            // Send hotel name to PHP file
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "process_booking.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Handle response from PHP file
+                    var response = xhr.responseText;
+                    alert(response);
+                }
+            };
+            xhr.send("hotelName=" + encodeURIComponent(hotelName));
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="#">ARP Travel</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item"><a class="nav-link" href="#section1" onclick="scrollToDiv('section1')">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="file:///C:/Users/ACER/Downloads/final%20project-20230912T042845Z-001/final%20project/New%20folder/aboutindex.html" onclick="scrollToDiv('footer')">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section2" onclick="scrollToDiv('section2')">Destinations</a></li>
+              <li class="nav-item"><a class="nav-link" href="#section3" onclick="scrollToDiv('section3')">Note</a></li>
+              <!--<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+              -->
+              <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="header">
+        <h1>Staying Place</h1>
+    </div>
+    <div class="container">
+        <div class="hotel">
+            <div class="img">
+                <img src="images/hotel1.jpg" alt="Hotel 1"/>
+                <div class="overlay"></div>
+                <div class="description">
+                    <p>Hotel 1 Description</p>
+                    <a href="askcar.html"><button onclick="bookHotel('Hotel 1')">Book Now</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="hotel">
+            <div class="img">
+                <img src="images/hotel2.jpg" alt="Hotel 2"/>
+                <div class="overlay"></div>
+                <div class="description">
+                    <p>Hotel 2 Description</p>
+                    <a href="askcar.html"><button onclick="bookHotel('Hotel 2')">Book Now</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="hotel">
+            <div class="img">
+                <img src="images/hotel3.jpg" alt="Hotel 3"/>
+                <div class="overlay"></div>
+                <div class="description">
+                    <p>Hotel 3 Description</p>
+                    <a href="askcar.html"><button onclick="bookHotel('Hotel 3')">Book Now</button></a>
+               </div>
+            </div>
+        </div>
+        <div class="hotel">
+            <div class="img">
+                <img src="images/hotel4.jpg" alt="Hotel 4"/>
+                <div class="overlay"></div>
+                <div class="description">
+                    <p>Hotel 4 Description</p>
+                    <a href="askcar.html"><button onclick="bookHotel('Hotel 4')">Book Now</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="hotel">
+            <div class="img">
+                <img src="images/HOTEL5.jpg" alt="Hotel 5"/>
+                <div class="overlay"></div>
+                <div class="description">
+                    <p>Hotel 5 Description</p>
+                    <a href="askcar.html"><button onclick="bookHotel('Hotel 5')">Book Now</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="hotel">
+            <div class="img">
+                <img src="images/hotel6.jpg" alt="Hotel 6"/>
+                <div class="overlay"></div>
+                <div class="description">
+                    <p>Hotel 6 Description</p>
+                    <a><button onclick="bookHotel('Hotel 6')">Book Now</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="hotel">
+            <div class="img">
+                <img src="images/hotel7.jpg" alt="Hotel 7"/>
+                <div class="overlay"></div>
+                <div class="description">
+                    <p>Hotel 7 Description</p>
+                    <a><button onclick="bookHotel('Hotel 7')">Book Now</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="hotel">
+            <div class="img">
+                <img src="images/hotel8.jpg" alt="Hotel 8"/>
+                <div class="overlay"></div>
+                <div class="description">
+                    <p>Hotel 8 Description</p>
+                    <a><button onclick="bookHotel('Hotel 8')">Book Now</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

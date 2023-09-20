@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scrolling Progress</title>
+		<link rel="stylesheet" href="style2.css" />
+	</head>
+	<body>
+		<div class="progress__wrapper">
+			<span class="progress__bar"></span>
+		</div>
+		<article class="article__content">
+			<h1>
+				Travel Mount Abu
+			</h1>
+			<p>Discover the serene beauty of Mount Abu, the only hill station in the state of Rajasthan. Nestled amidst the Aravalli Range, Mount Abu offers a tranquil retreat from the desert landscapes. Explore the lush greenery, pristine lakes, and ancient temples that dot this enchanting hill town. Take a leisurely stroll along Nakki Lake, visit the famous Dilwara Temples, and immerse yourself in the breathtaking views from Guru Shikhar, the highest peak in the Aravalli Range.</p>
+					
+			<h2>
+				Nakki Lake
+			</h2>
+			<img
+				src="images/Nakki lake.jpg"
+				alt="Nakki Lake"
+				title="Nakki Lake"
+			/>
+			<p>Enjoy the scenic beauty of Nakki Lake, a serene water body surrounded by lush green hills. Take a boat ride or simply relax by the lake's tranquil shores. Legends say that this lake was created by the gods using their nails ("nakk" in Hindi), giving it the name Nakki Lake. Admire the natural rock formations, including Toad Rock and Nun Rock, which add to the charm of this picturesque lake.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Nakki Lake">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Dilwara Temples
+			</h2>
+			<img
+				src="images/Dilwara-Temples.png"
+				alt="Dilwara Temples"
+				title="Dilwara Temples"
+			/>
+			<p>Marvel at the architectural marvels of Dilwara Temples, renowned for their intricate marble carvings and exquisite craftsmanship. These temples, built between the 11th and 13th centuries, are dedicated to various Jain Tirthankaras. Explore the intricately carved pillars, domes, and doorways that showcase the finest examples of temple architecture. The stunning craftsmanship and serene ambiance make the Dilwara Temples a must-visit attraction in Mount Abu.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Dilwara Temples">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Guru Shikhar
+			</h2>
+			<img
+				src="images/Guru-Shikhar.jpg"
+				alt="Guru Shikhar"
+				title="Guru Shikhar"
+			/>
+			<p>Climb to the summit of Guru Shikhar, the highest peak in the Aravalli Range, and soak in the panoramic views of Mount Abu and its surrounding landscapes. Enjoy the cool breeze as you stand at an elevation of 1,722 meters (5,650 feet) above sea level. On a clear day, you can witness breathtaking views of the plains stretching across Rajasthan. Visit the Guru Dattatreya Temple located at the peak and seek blessings in this serene and spiritually significant place.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Guru Shikhar">
+				<span>
+					<i></i>
+				</span>
+			</label>
+			<h2>
+				Achalgarh Fort
+			</h2>
+			<img
+				src="images/Achalgarh-fort.jpg"
+				alt="Achalgarh Fort"
+				title="Achalgarh Fort"
+			/>
+			<p>Explore the historic Achalgarh Fort, a majestic fortress with a rich history. Built in the 14th century by the Paramara dynasty rulers, the fort is known for its impressive architecture and ancient temples. Visit the Achaleshwar Mahadev Temple, dedicated to Lord Shiva, which is located within the fort complex. Admire the massive stone walls, intricate carvings, and panoramic views of the surrounding hills from the fort.</p>
+			<label><input type="checkbox" class="spot__checkbox" value="Achalgarh Fort">
+				<span>
+					<i></i>
+				</span>
+			</label>
+		</article>
+
+		<div class="footer-button">
+			<a href="Asking.html">Move Forward</a>
+		</div>
+		  
+		<script>
+			const body = document.body;
+			const progressBar = document.querySelector('.progress__bar');
+			const checkboxes = document.querySelectorAll('.spot__checkbox');
+			const spotsButton = document.querySelector('.spot__button');
+			const selectedSpots = [];
+	
+			const updateProgress = () => {
+				let scrollPos = (window.scrollY / (body.scrollHeight - window.innerHeight)) * 100;
+				progressBar.style.width = `${scrollPos}%`;
+				requestAnimationFrame(updateProgress);
+			};
+	
+			updateProgress();
+	
+			checkboxes.forEach((checkbox) => {
+				checkbox.addEventListener('change', (event) => {
+					const spotName = event.target.value;
+					if (event.target.checked) {
+						selectedSpots.push(spotName);
+					} else {
+						const index = selectedSpots.indexOf(spotName);
+						if (index > -1) {
+							selectedSpots.splice(index, 1);
+						}
+					}
+				});
+			});
+	
+			spotsButton.addEventListener('click', () => {
+				const spotsText = selectedSpots.join(', ');
+				alert(spotsText);
+			});
+		</script>
+	</body>
+</html>

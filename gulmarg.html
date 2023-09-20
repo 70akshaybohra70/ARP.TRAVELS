@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Scrolling Progress</title>
+	<link rel="stylesheet" href="style2.css" />
+</head>
+<body>
+	<div class="progress__wrapper">
+		<span class="progress__bar"></span>
+	</div>
+	<article class="article__content">
+		<h1>
+			Travel Gulmarg
+		</h1>
+		<p>Discover the mesmerizing beauty of Gulmarg, a paradise in the Indian state of Jammu and Kashmir. Surrounded by snow-capped peaks, lush meadows, and dense forests, Gulmarg is a popular destination for nature lovers and adventure enthusiasts. Experience the thrill of skiing, snowboarding, and trekking in the picturesque landscapes. Ride the Gulmarg Gondola, one of the highest cable car systems in the world, and enjoy panoramic views of the Himalayas.</p>
+		<h2>
+			Gulmarg Gondola
+		</h2>
+		<img
+			src="images/gulmarg-gondola.cms"
+			alt="Gulmarg Gondola"
+			title="Gulmarg Gondola"
+		/>
+		<p>Embark on a memorable journey on the Gulmarg Gondola, which takes you to an altitude of 3,979 meters. Enjoy the breathtaking views of the surrounding mountains, meadows, and forests as you ascend in the cable car. The Gulmarg Gondola offers an unforgettable experience and is a must-visit attraction in Gulmarg.</p>
+		<label><input type="checkbox" class="spot__checkbox" value="Gulmarg Gondola">
+			<span>
+				<i></i>
+			</span>
+		</label>
+		<h2>
+			Strawberry Valley
+		</h2>
+		<img
+			src="images/strawberry-valley.jpg"
+			alt="Strawberry Valley"
+			title="Strawberry Valley"
+		/>
+		<p>Explore the scenic beauty of Strawberry Valley, known for its picturesque landscapes and lush green meadows. Take a leisurely walk through the valley, breathe in the fresh mountain air, and immerse yourself in the tranquility of nature. The vibrant colors of the flowers and the serenity of the surroundings make Strawberry Valley a perfect spot for nature lovers.</p>
+		<label><input type="checkbox" class="spot__checkbox" value="Strawberry Valley">
+			<span>
+				<i></i>
+			</span>
+		</label>
+		<h2>
+			Alpather Lake
+		</h2>
+		<img
+			src="images/alpather-lake.jpg"
+			alt="Alpather Lake"
+			title="Alpather Lake"
+		/>
+		<p>Visit the enchanting Alpather Lake, located at the foot of the Apharwat Peak. Surrounded by snow-capped mountains and lush green meadows, the lake offers a serene and picturesque setting. Enjoy a peaceful boat ride on the crystal-clear waters of the lake and admire the stunning reflections of the surrounding landscape.</p>
+		<label><input type="checkbox" class="spot__checkbox" value="Alpather Lake">
+			<span>
+				<i></i>
+			</span>
+		</label>
+	</article>
+
+	<div class="footer-button">
+		<a href="Asking.html" id="spotsButton">Move Forward</a>
+	</div>
+
+	<script>
+		const body = document.body;
+		const progressBar = document.querySelector('.progress__bar');
+		const checkboxes = document.querySelectorAll('.spot__checkbox');
+		const spotsButton = document.getElementById('spotsButton');
+		const selectedSpots = [];
+
+		const updateProgress = () => {
+			let scrollPos = (window.scrollY / (body.scrollHeight - window.innerHeight)) * 100;
+			progressBar.style.width = `${scrollPos}%`;
+			requestAnimationFrame(updateProgress);
+		};
+
+		updateProgress();
+
+		checkboxes.forEach((checkbox) => {
+			checkbox.addEventListener('change', (event) => {
+				const spotName = event.target.value;
+				if (event.target.checked) {
+					selectedSpots.push(spotName);
+				} else {
+					const index = selectedSpots.indexOf(spotName);
+					if (index > -1) {
+						selectedSpots.splice(index, 1);
+					}
+				}
+			});
+		});
+
+		spotsButton.addEventListener('click', () => {
+			const xhr = new XMLHttpRequest();
+			xhr.open('POST', 'process_booking.php', true);
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					const response = xhr.responseText;
+					alert(response);
+				}
+			};
+			const spotsText = selectedSpots.join(', ');
+			xhr.send(`spots=${encodeURIComponent(spotsText)}`);
+		});
+	</script>
+</body>
+</html>
